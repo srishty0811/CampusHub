@@ -10,14 +10,28 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 const PORT = process.env.PORT || 5000;
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
 app.use("/files", express.static(path.join(__dirname, "files")));
+
+const allowedOrigins = [
+  "https://collegmate.vercel.app",
+  "http://localhost:3000"
+];
+
 app.use(
   cors({
-    origin: "https://collegmate.vercel.app",
-    credentials: true, // if you're using cookies
+    origin: function (origin, callback) {
+      if (!origin) return callback(null, true); // allow requests with no origin like Postman
+      if (allowedOrigins.indexOf(origin) === -1) {
+        const msg = `The CORS policy for this site does not allow access from the specified Origin: ${origin}`;
+        return callback(new Error(msg), false);
+      }
+      return callback(null, true);
+    },
+    credentials: true,
   })
 );
 

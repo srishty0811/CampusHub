@@ -3,7 +3,10 @@ import { useParams } from "react-router-dom";
 import { fileUploadEndpoints } from "../../../services/apis";
 import toast from "react-hot-toast";
 import { apiConnector } from "../../../services/apiConnector";
+
 const { GET_FILES_BY_DEPARTMENT_AND_SUBJECT_API } = fileUploadEndpoints;
+
+const backendUrl = process.env.REACT_APP_BACKEND_URL || "http://localhost:5000";
 
 const SubjectNotes = () => {
   const { Department, subjectName } = useParams();
@@ -23,6 +26,7 @@ const SubjectNotes = () => {
       }
     } catch (error) {
       console.error("Get Files API error:", error);
+      setFiles([]);
     }
     toast.dismiss(toastId);
   }
@@ -76,12 +80,7 @@ const SubjectNotes = () => {
                 {file.filePath ? (
                   <button
                     className="bg-blue-600 text-white rounded-lg px-6 py-3 shadow-md hover:bg-blue-700 transition-all duration-300"
-                    onClick={() =>
-                      window.open(
-                        `http://localhost:4000/${file.filePath}`,
-                        "_blank"
-                      )
-                    }
+                    onClick={() => window.open(`${backendUrl}/${file.filePath}`, "_blank")}
                   >
                     Open File
                   </button>
@@ -93,9 +92,7 @@ const SubjectNotes = () => {
                     Open Drive Link
                   </button>
                 ) : (
-                  <p className="text-red-500 font-semibold">
-                    No file available
-                  </p>
+                  <p className="text-red-500 font-semibold">No file available</p>
                 )}
               </div>
             </div>

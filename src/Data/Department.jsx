@@ -1,7 +1,63 @@
 export const department = [
-     {
+    {
         id: 1,
-        name: "1st Year Department",
+        name: "Computer Science and Engineering Department",
+        subjects: [
+            "Data Structures",
+            "Operating Systems",
+            "Database Systems",
+            "Computer Networks",
+            "Compiler Design",
+            "Machine Learning",
+            "Cloud Computing",
+            "Java",
+            "Data Analytics",
+            "Previous Year Paper"
+            
+        ]
+    },
+     {
+        id: 2,
+        name: "Electrical Engineering Department",
+        subjects: [
+            "Electric Circuits",
+            "Power Electronics",
+            "Electromagnetic Fields",
+            "Power Systems",
+            "Control Systems",
+            "Engineering Mathematics III",
+            "Electrical Measurement and Measuring Instruments",
+            "Network Analysis",
+            "Digital Electronics",
+            "Object Oriented Programming",
+            "Signals & Systems",
+            "Seminar (Soft Skill Based)",
+            "Electrical Machine-I",
+            "Power System I",
+            "Data Structures & Algorithms",
+            "Numerical Methods and Analysis",
+            "Analog Electronics",
+            "Elective-I",
+            "Electrical Machine-II",
+            "Power Electronics",
+            "Microprocessors and Microcontroller",
+            "Control System-I",
+            "Electromagnetic Field Theory",
+            "Seminar",
+            "Power System II",
+            "Digital Signal Processing",
+            "Industrial Instrumentation",
+            "Principle of Communication",
+            "Electrical Drives",
+            "Engineering Economics",
+            "Elective II",
+            "Elective III",
+            "Previous Year Paper"
+        ]
+    },
+     {
+        id: 3,
+        name: "Civil Engineering Department",
         subjects: [
             "Engineering Mathematics 1",
             "Physics 1",
@@ -18,20 +74,8 @@ export const department = [
             "Previous Year Paper",
         ]
     },
-    {
-        id: 2,
-        name: "Biomedical Engineering Department",
-        subjects: [
-            "Biomedical Instrumentation",
-            "Medical Imaging",
-            "Biomechanics",
-            "Biomaterials",
-            "Clinical Engineering",
-            "Previous Year Paper"
-        ]
-    },
-    {
-        id: 3,
+     {
+        id: 4,
         name: "Chemical Engineering Department",
         subjects: [
             "Chemical Reaction Engineering",
@@ -43,7 +87,19 @@ export const department = [
         ]
     },
     {
-        id: 4,
+        id: 5,
+        name: "Biomedical Engineering Department",
+        subjects: [
+            "Biomedical Instrumentation",
+            "Medical Imaging",
+            "Biomechanics",
+            "Biomaterials",
+            "Clinical Engineering",
+            "Previous Year Paper"
+        ]
+    },
+    {
+        id: 6,
         name: "Electronics and Instrumentation Department",
         subjects: [
             "Digital Signal Processing",
@@ -83,47 +139,9 @@ export const department = [
             "Previous Year Paper"
         ]
     },
+   
     {
-        id: 5,
-        name: "Electrical Engineering Department",
-        subjects: [
-            "Electric Circuits",
-            "Power Electronics",
-            "Electromagnetic Fields",
-            "Power Systems",
-            "Control Systems",
-            "Engineering Mathematics III",
-            "Electrical Measurement and Measuring Instruments",
-            "Network Analysis",
-            "Digital Electronics",
-            "Object Oriented Programming",
-            "Signals & Systems",
-            "Seminar (Soft Skill Based)",
-            "Electrical Machine-I",
-            "Power System I",
-            "Data Structures & Algorithms",
-            "Numerical Methods and Analysis",
-            "Analog Electronics",
-            "Elective-I",
-            "Electrical Machine-II",
-            "Power Electronics",
-            "Microprocessors and Microcontroller",
-            "Control System-I",
-            "Electromagnetic Field Theory",
-            "Seminar",
-            "Power System II",
-            "Digital Signal Processing",
-            "Industrial Instrumentation",
-            "Principle of Communication",
-            "Electrical Drives",
-            "Engineering Economics",
-            "Elective II",
-            "Elective III",
-            "Previous Year Paper"
-        ]
-    },
-    {
-        id: 6,
+        id: 7,
         name: "Electronics and Communication Engineering Department",
         subjects: [
             "Analog Electronics",
@@ -159,57 +177,8 @@ export const department = [
             "Previous Year Paper"
         ]
     },
-    {
-        id: 7,
-        name: "Computer Science and Engineering Department",
-        subjects: [
-            "Data Structures",
-            "Algorithms",
-            "Operating Systems",
-            "Database Systems",
-            "Computer Networks",
-            "Previous Year Paper"
-        ]
-    },
-    {
+     {
         id: 8,
-        name: "Civil Engineering Department",
-        subjects: [
-            "Structural Analysis",
-            "Geotechnical Engineering",
-            "Transportation Engineering",
-            "Water Resources Engineering",
-            "Construction Management",
-            "Mechanics of Solids",
-            "Engineering Geology",
-            "Mechanics of Fluids",
-            "Value Education, Ethics, and Environmental Studies",
-            "Mathematics - III",
-            "Humanities - III",
-            "Design of Structures",
-            "Building Materials",
-            "Construction and Services",
-            "Surveying",
-            "Structural Analysis - II",
-            "Design of Structures - II",
-            "Water Resources Engineering - I",
-            "Geotechnical Engineering - I",
-            "Transportation Engineering - I",
-            "Environmental Engineering - I",
-            "Civil Engineering Estimation, Costing, and Specification",
-            "Design of Structures - III",
-            "Water Resources Engineering - II",
-            "Geotechnical Engineering - II",
-            "Transportation Engineering - II",
-            "Environmental Engineering - II",
-            "Construction Planning and Management",
-            "Data Structures and Numerical Methods",
-            "H.S.S Elective",
-            "Previous Year Paper"
-        ]
-    },
-    {
-        id: 9,
         name: "Mechanical Engineering Department",
         subjects: [
             "Thermodynamics",
@@ -255,6 +224,43 @@ export const department = [
             "Elective-IV (CAD and Geometric Modeling)",
             "Elective-V (Advanced Machine Design)",
             "Elective-V (Boundary Layer Theory)",
+            "Previous Year Paper"
+        ]
+    },
+    {
+        id: 9,
+        name: "Civil Engineering Department",
+        subjects: [
+            "Structural Analysis",
+            "Geotechnical Engineering",
+            "Transportation Engineering",
+            "Water Resources Engineering",
+            "Construction Management",
+            "Mechanics of Solids",
+            "Engineering Geology",
+            "Mechanics of Fluids",
+            "Value Education, Ethics, and Environmental Studies",
+            "Mathematics - III",
+            "Humanities - III",
+            "Design of Structures",
+            "Building Materials",
+            "Construction and Services",
+            "Surveying",
+            "Structural Analysis - II",
+            "Design of Structures - II",
+            "Water Resources Engineering - I",
+            "Geotechnical Engineering - I",
+            "Transportation Engineering - I",
+            "Environmental Engineering - I",
+            "Civil Engineering Estimation, Costing, and Specification",
+            "Design of Structures - III",
+            "Water Resources Engineering - II",
+            "Geotechnical Engineering - II",
+            "Transportation Engineering - II",
+            "Environmental Engineering - II",
+            "Construction Planning and Management",
+            "Data Structures and Numerical Methods",
+            "H.S.S Elective",
             "Previous Year Paper"
         ]
     },

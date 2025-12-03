@@ -14,12 +14,12 @@ const Footer = () => {
           <p className="text-xs md:text-sm mt-1">
             Created by
             <a
-              href="https://www.linkedin.com/in/adarsh-kumar-6b20a3246/"
+              href="#"
               target="_blank"
               rel="noopener noreferrer"
               className="underline ml-1 hover:text-gray-200"
             >
-              ADARSH KUMAR
+              SRISHTY JAIN
             </a>
           </p>
         </div>
@@ -27,7 +27,7 @@ const Footer = () => {
         {/* Right side: Icons */}
         <div className="flex gap-6">
           <a
-            href="https://github.com/adarsh0128"
+            href="#"
             target="_blank"
             rel="noopener noreferrer"
             className="text-white hover:text-gray-200 transition-all duration-300 text-2xl"
@@ -35,7 +35,7 @@ const Footer = () => {
             <FaGithub />
           </a>
           <a
-            href="https://www.linkedin.com/in/adarsh-kumar-6b20a3246/"
+            href="#"
             target="_blank"
             rel="noopener noreferrer"
             className="text-white hover:text-gray-200 transition-all duration-300 text-2xl"

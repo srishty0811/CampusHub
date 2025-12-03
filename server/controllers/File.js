@@ -1,216 +1,191 @@
-const File = require("../models/FileUpload")
+const File = require("../models/FileUpload");
 
+// ---------------------- LOCAL FILE UPLOAD ----------------------
 exports.localFileUpload = async (req, res) => {
-    
-     try {
-        const {firstName,lastName, Department , subject , year , fileName} = req.body;
-        console.log("print req user",req.user);
-        const files = req.file;
-        const userId = req.user.id;
-       //console.log("printing file ", req.file);
-        console.log("Printing user id ", userId);
-
-        const newFile = new File({
-            firstName,
-            lastName,
-            Department,
-            year,
-            subject,
-            fileName,
-            filePath:files.path,
-            uploadedBy: userId, 
-        });
-        console.log("Printing new file",newFile);
-
-        try {
-            await newFile.save();
-            return res.status(200).json({
-                success:true,
-                message: "file uploaded and data saved",
-            });
-        } catch (error) {
-            console.log("Printing error in saving data ", error.message);
-            return res.status(500).json({
-                success:false,
-                message:"Error in file data saving",
-            });
-        }
-    }
-    catch (error) {
-        console.log("Printing error in file uploading", error.message);
-        return res.status(500).json({
-            success: false,
-            message: "file not uploaded",
-        });
-    }
-}
-
-exports.fileUploadUsingDriveLink = async (req, res) => {
-    
   try {
-    console.log("Printing req.body", req.body);
-     const {firstName,lastName, Department , subject , year , fileName, driveLink} = req.body;
-    // console.log("print req user",req.user);
-     const userId = req.user.id;
-    //console.log("printing file ", req.file);
-     //console.log("Printing user id ", userId);
-     const newFile = new File({
-         firstName,
-         lastName,
-         Department,
-         year,
-         subject,
-         fileName,
-         driveLink,
-        uploadedBy: userId, 
-     });
-     console.log("Printing new file",newFile);
+    const { firstName, lastName, Department, subject, year, fileName } = req.body;
+    const files = req.file;
+    const userId = req.user.id;
 
-     try {
-         await newFile.save();
-         return res.status(200).json({
-             success:true,
-             message: "file uploaded and data saved",
-         });
-     } catch (error) {
-         console.log("Printing error in saving data ", error.message);
-         return res.status(500).json({
-             success:false,
-             message:"Error in file data saving",
-         });
-     }
- }
- catch (error) {
-     console.log("Printing error in file uploading", error.message);
-     return res.status(500).json({
-         success: false,
-         message: "file not uploaded",
-     });
- }
-}
+    console.log("User ID:", userId);
 
-exports.getSubjectName = async (req, res) => {
-    try {
-    //  console.log("print req.query",req.query)
-      const { Department } = req.query;
-  
-      // Validate required parameters
-      if (!Department) {
-        return res.status(400).json({
-          success: false,
-          message: "Missing required parameters: year and department",
-        });
-      }
-  
-      const response = await File.find({
-        Department, 
-      }).distinct('subject'); 
-
-      return res.status(200).json({
-        success: true,
-        message: "Subject names found",
-        subjects: response, // Rename 'response' to 'subjects' for clarity
-      });
-    } catch (error) {
-      console.error("Error in getting subject names:", error.message);
-      return res.status(500).json({
+    if (!files) {
+      return res.status(400).json({
         success: false,
-        message: "Subject names cannot be fetched",
+        message: "No file received",
       });
     }
-  };
 
+    const newFile = new File({
+      firstName,
+      lastName,
+      Department,
+      year,
+      subject,
+      fileName,
+      filePath: files.path,
+      uploadedBy: userId,
+    });
 
-exports.getFilesByDepartmentAndSubject = async (req, res) => {
-  try {
-      const { Department, subjectName } = req.query;
-
-      console.log("Department:", Department, "Subject Name:", subjectName);
-      if (!Department || !subjectName) {
-          return res.status(400).json({
-              success: false,
-              message: "Missing required parameters: Department or Subject Name",
-          });
-      }
-
-      const files = await File.find({
-          Department,
-          subject: subjectName
-      });
-
-      console.log("Files found:", files);
-      return res.status(200).json({
-          success: true,
-          message: "Files found",
-          files,
-      });
+    await newFile.save();
+    return res.status(200).json({
+      success: true,
+      message: "File uploaded and data saved",
+    });
   } catch (error) {
-      console.error("Error in getting files:", error.message);
-      return res.status(500).json({
-          success: false,
-          message: "Files cannot be fetched",
-      });
+    console.error("Error in localFileUpload:", error.message);
+    return res.status(500).json({
+      success: false,
+      message: "File not uploaded",
+    });
   }
 };
 
-exports.getUserNotes=async (req,res)=>
-  {
-    try {
-      
-      const userId = req.query.userid; 
-      // Fetch all notes that belong to the user
-      const notes = await File.find({ uploadedBy: userId });
-      if (!notes || notes.length === 0) {
-        return res.status(404).json({
-          success: false,
-          message: 'No notes found for this user.',
-        });
-      }
-  
-      // Send the notes back to the client
-      res.status(200).json({
-        success: true,
-        notes,
-      });
-    } catch (error) {
-      console.error('Error fetching user notes:', error);
-      res.status(500).json({
+// ---------------------- FILE UPLOAD USING DRIVE LINK ----------------------
+exports.fileUploadUsingDriveLink = async (req, res) => {
+  try {
+    const { firstName, lastName, Department, subject, year, fileName, driveLink } = req.body;
+    const userId = req.user.id;
+
+    const newFile = new File({
+      firstName,
+      lastName,
+      Department,
+      year,
+      subject,
+      fileName,
+      driveLink,
+      uploadedBy: userId,
+    });
+
+    await newFile.save();
+    return res.status(200).json({
+      success: true,
+      message: "File uploaded and data saved",
+    });
+  } catch (error) {
+    console.error("Error in fileUploadUsingDriveLink:", error.message);
+    return res.status(500).json({
+      success: false,
+      message: "File not uploaded",
+    });
+  }
+};
+
+// ---------------------- GET SUBJECT NAMES ----------------------
+exports.getSubjectName = async (req, res) => {
+  try {
+    const { Department } = req.query;
+
+    if (!Department) {
+      return res.status(400).json({
         success: false,
-        message: 'Server error. Could not fetch notes.',
+        message: "Missing required parameter: Department",
       });
     }
-}
 
-exports.DeleteNote = async(req, res) => {
-  console.log('Attempting to delete note...');
+    const subjects = await File.find({ Department }).distinct("subject");
+    return res.status(200).json({
+      success: true,
+      message: "Subject names found",
+      subjects,
+    });
+  } catch (error) {
+    console.error("Error in getSubjectName:", error.message);
+    return res.status(500).json({
+      success: false,
+      message: "Subject names cannot be fetched",
+    });
+  }
+};
+
+// ---------------------- GET FILES BY DEPARTMENT & SUBJECT ----------------------
+exports.getFilesByDepartmentAndSubject = async (req, res) => {
   try {
-        const noteId = req.body.params.noteId; // Get the noteId from the request query
+    const { Department, subjectName } = req.query;
 
-    
-    // Find the note by ID and check if it exists
+    if (!Department || !subjectName) {
+      return res.status(400).json({
+        success: false,
+        message: "Missing required parameters: Department or Subject Name",
+      });
+    }
+
+    const files = await File.find({ Department, subject: subjectName });
+
+    // ✅ Add file URL for frontend
+    const backendUrl = process.env.BACKEND_URL || "http://localhost:5000";
+    const filesWithUrl = files.map((file) => ({
+      ...file._doc,
+      fileUrl: file.filePath
+        ? `${backendUrl}/${file.filePath.replace(/\\/g, "/")}`
+        : file.driveLink || null,
+    }));
+
+    return res.status(200).json({
+      success: true,
+      message: "Files found",
+      files: filesWithUrl,
+    });
+  } catch (error) {
+    console.error("Error in getFilesByDepartmentAndSubject:", error.message);
+    return res.status(500).json({
+      success: false,
+      message: "Files cannot be fetched",
+    });
+  }
+};
+
+// ---------------------- GET USER NOTES ----------------------
+exports.getUserNotes = async (req, res) => {
+  try {
+    const userId = req.query.userid;
+    const notes = await File.find({ uploadedBy: userId });
+
+    if (!notes || notes.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: "No notes found for this user.",
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      notes,
+    });
+  } catch (error) {
+    console.error("Error fetching user notes:", error);
+    res.status(500).json({
+      success: false,
+      message: "Server error. Could not fetch notes.",
+    });
+  }
+};
+
+// ---------------------- DELETE NOTE ----------------------
+exports.DeleteNote = async (req, res) => {
+  try {
+    const noteId = req.body.params.noteId;
+
     const note = await File.findOne({ _id: noteId });
-    
     if (!note) {
       return res.status(404).json({
         success: false,
-        message: 'Note not found or you do not have permission to delete this note.',
+        message: "Note not found or no permission to delete",
       });
     }
 
-    // Delete the note
     await File.findByIdAndDelete(noteId);
 
-    // Respond with a success message
     res.status(200).json({
       success: true,
-      message: 'Note deleted successfully.',
+      message: "Note deleted successfully",
     });
   } catch (error) {
-    console.error('Error deleting note:', error);
+    console.error("Error deleting note:", error);
     res.status(500).json({
       success: false,
-      message: 'Server error. Could not delete note.',
+      message: "Server error. Could not delete note",
     });
   }
-}
-
+};

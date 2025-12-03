@@ -18,11 +18,11 @@ const Contact = () => {
           <div className="flex flex-col items-center md:items-start space-y-4">
             <div className="flex items-center gap-3">
               <span className="text-indigo-600 text-xl">📧</span>
-              <p className="text-gray-700">adarshnita26@gmail.com</p>
+              <p className="text-gray-700">jainsrishty309@gmail.com</p>
             </div>
             <div className="flex items-center gap-3">
               <span className="text-indigo-600 text-xl">📞</span>
-              <p className="text-gray-700">+91 6203179203</p>
+              <p className="text-gray-700">+91 8439707968</p>
             </div>
           </div>
         </div>

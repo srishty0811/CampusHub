@@ -64,7 +64,7 @@ const Navbar = () => {
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2 cursor-pointer">
           <h1 className="text-3xl md:text-5xl font-extrabold bg-gradient-to-r from-cyan-300 to-blue-500 bg-clip-text text-transparent">
-            CollegeMate
+            CampusHub
           </h1>
         </Link>
 
